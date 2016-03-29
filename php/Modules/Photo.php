@@ -606,6 +606,7 @@ final class Photo {
 		$photo['public'] = $data['public'];
 		$photo['star']   = $data['star'];
 		$photo['album']  = $data['album'];
+		$photo['sysstamp']  = $data['sysstamp'];
 
 		// Parse urls
 		$photo['thumbUrl'] = LYCHEE_URL_UPLOADS_THUMB . $data['thumbUrl'];
@@ -622,7 +623,7 @@ final class Photo {
 
 			// Use sysstamp from the id
 			$photo['cameraDate'] = '0';
-			$photo['sysdate']    = strftime('%d %B %Y', substr($data['id'], 0, -4));
+			$photo['sysdate']    = strftime('%B %Y', $data['sysstamp']);
 
 		}
 
@@ -660,7 +661,7 @@ final class Photo {
 		}
 
 		// Parse photo
-		$photo['sysdate'] = strftime('%d %b. %Y', substr($photo['id'], 0, -4));
+		$photo['sysdate'] = strftime('%d %b. %Y', $photo['sysstamp']);
 		if (strlen($photo['takestamp'])>1) $photo['takedate'] = strftime('%d %b. %Y', $photo['takestamp']);
 
 		// Parse medium
